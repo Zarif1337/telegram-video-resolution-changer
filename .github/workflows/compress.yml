@@ -1,5 +1,4 @@
-
-name: Compress Class Video
+name: Class Video & Media Converter
 
 on:
   repository_dispatch:
@@ -22,10 +21,17 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Process Video
+      - name: Process Media File
         env:
           API_ID: ${{ secrets.API_ID }}
           API_HASH: ${{ secrets.API_HASH }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: |
-          python process.py "${{ github.event.client_payload.chat_id }}" "${{ github.event.client_payload.message_id }}" "${{ github.event.client_payload.resolution }}"
+          python process.py \
+            "${{ github.event.client_payload.chat_id }}" \
+            "${{ github.event.client_payload.message_id }}" \
+            "${{ github.event.client_payload.mode }}" \
+            "${{ github.event.client_payload.resolution }}" \
+            "${{ github.event.client_payload.preset }}" \
+            "${{ github.event.client_payload.audio_format }}" \
+            "${{ github.event.client_payload.codec }}"
