@@ -42,7 +42,7 @@ def build_progress_bar(percentage):
 
 async def main():
     async with Client("github_worker", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN) as app:
-        status_msg = await app.send_message(CHAT_ID, "⚡ **GitHub Actions Engine Started!**\n📥 Downloading source media...")
+        status_msg = await app.send_message(CHAT_ID, "⚡ **Server Engine Started! successfully!!**\n📥 Downloading source media...")
         last_update_time = [0]
 
         async def progress_callback(current, total):
@@ -135,7 +135,7 @@ async def main():
 
         # --- MODE 3: 10 EVENLY SPACED SCREENSHOTS (IMAGE GALLERY) ---
         elif MODE == "screenshot":
-            await status_msg.edit_text("📸 **Extracting 10 Evenly Spaced Screenshots...**")
+            await status_msg.edit_text("📸 **Extracting 10 Screenshots...**")
             screenshots = []
             
             for i in range(1, 11):
@@ -150,7 +150,7 @@ async def main():
                     screenshots.append(img_file)
 
             if screenshots:
-                await status_msg.edit_text("📤 **Uploading 10 Screenshots Album to Telegram...**")
+                await status_msg.edit_text("📤 **Uploading 10 Screenshots Album...**")
                 media_group = [
                     InputMediaPhoto(
                         img, 
